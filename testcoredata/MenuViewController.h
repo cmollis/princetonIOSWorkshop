@@ -10,9 +10,9 @@
 #import "Item.h"
 #import "Order.h"
 
-@interface MenuViewController : UITableViewController 
+@interface MenuViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) NSArray* items; 
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) Order *order;
 
 @end
