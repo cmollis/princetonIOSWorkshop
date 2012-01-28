@@ -12,27 +12,30 @@
 #import "OrderItem.h"
 #import "AppController.h"
 
+@interface AppDelegate () 
+- (void)initDB;
+
+@end
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize order = _order;
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Override point for customization after application launch.
-            
-//    NSLog(@"Testing model here..  ");
-    
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSError *error;
-    
-//    AppController *app = [AppController sharedInstance];
+- (void)initDB {
+    NSError *error = nil;
 
+    // check if data is loaded
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Item"];
+    NSArray *items = [self.managedObjectContext executeFetchRequest:request error:&error];
+    if ([items count] > 0 ) {
+        return;
+    }
 
- /*   Item *itemData = [NSEntityDescription
+    Item *itemData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Item" 
-                      inManagedObjectContext:context];
+                      inManagedObjectContext:self.managedObjectContext];
     
     itemData.itemName = @"Gross Burger";
     itemData.itemCost = [NSNumber numberWithFloat:13.28];
@@ -46,8 +49,8 @@
     
     
     Ingredient *ingredientData = [NSEntityDescription
-                      insertNewObjectForEntityForName:@"Ingredient" 
-                      inManagedObjectContext:context];   
+                                  insertNewObjectForEntityForName:@"Ingredient" 
+                                  inManagedObjectContext:self.managedObjectContext];   
     
     ingredientData.name = @"Two all beef patties";
     ingredientData.item = itemData;
@@ -56,7 +59,7 @@
     
     ingredientData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Ingredient" 
-                      inManagedObjectContext:context]; 
+                      inManagedObjectContext:self.managedObjectContext]; 
     
     ingredientData.name = @"Special Sauce";
     ingredientData.item = itemData;
@@ -65,7 +68,7 @@
     
     ingredientData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Ingredient" 
-                      inManagedObjectContext:context]; 
+                      inManagedObjectContext:self.managedObjectContext]; 
     
     ingredientData.name = @"Lettuce";
     ingredientData.item = itemData;
@@ -74,20 +77,20 @@
     
     ingredientData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Ingredient" 
-                      inManagedObjectContext:context]; 
+                      inManagedObjectContext:self.managedObjectContext]; 
     
     ingredientData.name = @"Cheese";
     ingredientData.item = itemData;
     
     [ingredientsSet addObject:ingredientData];
-
+    
     //must use the supplied accessor methods
     [itemData addIngredients:ingredientsSet];
     
     
     itemData = [NSEntityDescription
                 insertNewObjectForEntityForName:@"Item" 
-                inManagedObjectContext:context];
+                inManagedObjectContext:self.managedObjectContext];
     
     itemData.itemName = @"Spanky Special";
     itemData.itemCost = [NSNumber numberWithFloat:20.99];
@@ -96,21 +99,21 @@
     
     imageData = UIImagePNGRepresentation(foodImg);
     itemData.itemImg = imageData;
-
-     ingredientsSet = [[NSMutableSet alloc] init];
+    
+    ingredientsSet = [[NSMutableSet alloc] init];
     
     ingredientData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Ingredient" 
-                      inManagedObjectContext:context]; 
+                      inManagedObjectContext:self.managedObjectContext]; 
     
     ingredientData.name = @"Special Sauce";
     ingredientData.item = itemData;
     
     [ingredientsSet addObject:ingredientData];
-
+    
     ingredientData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Ingredient" 
-                      inManagedObjectContext:context]; 
+                      inManagedObjectContext:self.managedObjectContext]; 
     
     ingredientData.name = @"One Beef Patty";
     ingredientData.item = itemData;
@@ -119,18 +122,32 @@
     
     ingredientData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Ingredient" 
-                      inManagedObjectContext:context]; 
+                      inManagedObjectContext:self.managedObjectContext]; 
     
     ingredientData.name = @"Ketchup";
     ingredientData.item = itemData;
     
     [ingredientsSet addObject:ingredientData];
     
-        if (![context save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
+    if (![self.managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
 
- */
+    
+}
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    // Override point for customization after application launch.
+            
+//    NSLog(@"Testing model here..  ");
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSError *error;
+    
+//    AppController *app = [AppController sharedInstance];
+
+
+    [self initDB];
     
     
     // load the order     
