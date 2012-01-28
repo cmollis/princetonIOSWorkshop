@@ -148,15 +148,15 @@
 		1AA149C714D05EB90087E10E /* coreDataStuff */ = {
 			isa = PBXGroup;
 			children = (
-				1A3C095D14C74080006F58C6 /* Shopping.xcdatamodeld */,
-				1AC1CCD614D19C9E00AAF455 /* Order.h */,
-				1AC1CCD714D19C9E00AAF455 /* Order.m */,
-				1AC1CCD214D19C7000AAF455 /* OrderItem.h */,
-				1AC1CCD314D19C7000AAF455 /* OrderItem.m */,
 				1AA149D714D083C40087E10E /* Ingredient.h */,
 				1AA149D814D083C40087E10E /* Ingredient.m */,
 				1AA149D414D083A70087E10E /* Item.h */,
 				1AA149D514D083A70087E10E /* Item.m */,
+				1AC1CCD614D19C9E00AAF455 /* Order.h */,
+				1AC1CCD714D19C9E00AAF455 /* Order.m */,
+				1AC1CCD214D19C7000AAF455 /* OrderItem.h */,
+				1AC1CCD314D19C7000AAF455 /* OrderItem.m */,
+				1A3C095D14C74080006F58C6 /* Shopping.xcdatamodeld */,
 			);
 			name = coreDataStuff;
 			sourceTree = "<group>";
@@ -165,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				1AA149C714D05EB90087E10E /* coreDataStuff */,
-				1A3C095B14C73F7A006F58C6 /* CoreData.framework */,
 				1AC69E7E14C0B0160056D2F7 /* testcoredata */,
 				1AC69EAA14C0B0160056D2F7 /* testcoredataTests */,
 				1AC69E7714C0B0160056D2F7 /* Frameworks */,
@@ -185,6 +184,7 @@
 		1AC69E7714C0B0160056D2F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A3C095B14C73F7A006F58C6 /* CoreData.framework */,
 				1AC69E7814C0B0160056D2F7 /* UIKit.framework */,
 				1AC69E7A14C0B0160056D2F7 /* Foundation.framework */,
 				1AC69E7C14C0B0160056D2F7 /* CoreGraphics.framework */,
