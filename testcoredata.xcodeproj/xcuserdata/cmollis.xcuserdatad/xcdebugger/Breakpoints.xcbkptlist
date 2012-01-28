@@ -70,7 +70,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "27"
          endingLineNumber = "27"
-         landmarkName = "-application:didFinishLaunchingWithOptions:"
+         landmarkName = "-initDB"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
