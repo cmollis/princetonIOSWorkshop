@@ -310,7 +310,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
-				ORGANIZATIONNAME = "Objectlab, LLC";
+				ORGANIZATIONNAME = "AppsOnTheSide, LLC";
 			};
 			buildConfigurationList = 1AC69E6E14C0B0160056D2F7 /* Build configuration list for PBXProject "testcoredata" */;
 			compatibilityVersion = "Xcode 3.2";
