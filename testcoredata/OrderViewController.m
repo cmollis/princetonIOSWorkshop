@@ -35,6 +35,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    NSLog(@"Scrolling.. ");
+    
+    [self.tableView endEditing:YES];
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
