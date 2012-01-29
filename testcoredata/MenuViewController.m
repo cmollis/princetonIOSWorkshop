@@ -61,6 +61,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -232,6 +233,12 @@
     
     return __fetchedResultsController;
 }    
+
+-(void) dealloc {
+    
+    //should set delegates to nil in ARC
+    self.fetchedResultsController.delegate = nil;
+}
 
 
 @end

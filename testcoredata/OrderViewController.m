@@ -63,6 +63,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.fetchedResultsController.delegate = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -296,6 +297,9 @@
     [self.tableView endUpdates];
 }
 
-
+-(void)dealloc {
+    
+    self.fetchedResultsController.delegate = nil;
+}
 
 @end
