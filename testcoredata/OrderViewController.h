@@ -12,5 +12,6 @@
 @interface OrderViewController : UITableViewController<NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSNumberFormatter *numberFormatter;
 
 @end

@@ -122,18 +122,13 @@
     
     if (indexPath.section == 0) {
 		//let the user select the store, section 0 always the store
-		
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierIngredient];
-                
         Ingredient *ing = [[self.item.ingredients  allObjects] objectAtIndex:indexPath.row];
-        
 		cell.textLabel.text = ing.name  ;
-		
 	}
 	
 	if (indexPath.section == 1) {
 		//here user may have order items so add a checkout row, if not just add one row
-		
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifierAddToOrder];
     }
         

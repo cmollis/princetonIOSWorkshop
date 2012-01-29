@@ -16,6 +16,7 @@
 @implementation OrderViewController
 
 @synthesize fetchedResultsController = __fetchedResultsController;
+@synthesize numberFormatter;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -43,6 +44,9 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
+    self.numberFormatter = [[NSNumberFormatter alloc] init];
+    self.numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
@@ -98,7 +102,11 @@
 {
     int rows = 1;
     if (section == 1) {
-        rows = [self.fetchedResultsController.fetchedObjects count];
+        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section - 1];
+
+        rows = [sectionInfo numberOfObjects];
+
+
     }
     return rows;
 }
@@ -117,8 +125,9 @@
     else {
         // items
         cell = [tableView dequeueReusableCellWithIdentifier:orderItemCell];
-        OrderItem *item =  [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+        OrderItem *item = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]];
         cell.textLabel.text = item.item.itemName;
+        cell.detailTextLabel.text = [self.numberFormatter stringFromNumber:item.item.itemCost];
     }
                         
     // Configure the cell...
@@ -139,10 +148,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the managed object for the given index path
         NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        [context deleteObject:[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section - 1)]]];
         
         // Save the context.
         NSError *error = nil;
@@ -156,6 +166,8 @@
             abort();
         }
     }   
+        
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,11 +247,11 @@
 {
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex + 1] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex + 1] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
@@ -256,7 +268,7 @@
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section + 1)]] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
@@ -265,7 +277,7 @@
             
         case NSFetchedResultsChangeMove:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
