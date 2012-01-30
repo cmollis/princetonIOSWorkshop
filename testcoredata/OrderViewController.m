@@ -63,12 +63,13 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-    self.fetchedResultsController.delegate = nil;
+ //   self.fetchedResultsController.delegate = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -109,11 +110,23 @@
 #pragma mark table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    int rows = 1;
-    if (section == 1) {
-        id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section - 1];
-
-        rows = [sectionInfo numberOfObjects];
+    int rows = 0;
+    
+    NSLog(@"section is %d ", section );
+    
+    if (section == 0 ) {
+        
+        NSLog(@"Checking section 0 .. number of rows = 1  ");
+        rows = 1;
+    }
+    else {
+    
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section-1];
+    
+    rows = [sectionInfo numberOfObjects];
+    
+        
+        NSLog(@" in section 1 there are %d rows ", rows );
 
 
     }
@@ -221,7 +234,7 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"item" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"item.itemName" ascending:YES];
     NSArray *sortDescriptors = [NSArray arrayWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -271,12 +284,15 @@
 {
     UITableView *tableView = self.tableView;
     
+    NSLog(@"About to modify: Row Count %d ", [[self.fetchedResultsController fetchedObjects] count] );
+    
     switch(type) {
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section + 1)]] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
+            NSLog(@"Removing Rows at row %d ", [indexPath row] );
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:(indexPath.section + 1)]] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
@@ -295,11 +311,13 @@
 {
     self.navigationController.tabBarItem.badgeValue = [NSString stringWithFormat:@"%i", [self.fetchedResultsController.fetchedObjects count]];
     [self.tableView endUpdates];
+    
+    [self.tableView reloadData];
 }
 
 -(void)dealloc {
     
-    self.fetchedResultsController.delegate = nil;
+    //self.fetchedResultsController.delegate = nil;
 }
 
 @end
