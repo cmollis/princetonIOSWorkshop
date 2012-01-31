@@ -2,21 +2,20 @@
 //  Item.m
 //  testcoredata
 //
-//  Created by chris mollis on 1/25/12.
+//  Created by Eric Mansfield on 1/29/12.
 //  Copyright (c) 2012 AppsOnTheSide, LLC. All rights reserved.
 //
 
 #import "Item.h"
 #import "Ingredient.h"
-#import "Order.h"
+#import "OrderItem.h"
 
 
 @implementation Item
 
 @dynamic itemCost;
-@dynamic itemName;
 @dynamic itemImg;
+@dynamic itemName;
 @dynamic ingredients;
-@dynamic order;
 
 @end
