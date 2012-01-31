@@ -196,9 +196,14 @@
         
         //must do this in order to save the relationship!
     OrderItem *orderItem = [[OrderItem alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
+    
+    Item* tm = (Item*) theItem;
+    
+    NSLog(@"About to add the item ");
+    NSLog(@"THE ITEM name is %@", tm.itemName );
         
     orderItem.item = theItem;
-    orderItem.order = self.order;
+   // orderItem.order = self.order;
         
     [self.order addOrderItemsObject:orderItem];
         
