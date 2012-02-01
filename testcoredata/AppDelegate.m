@@ -25,7 +25,7 @@
 
 - (void)initDB {
     NSError *error = nil;
-
+    
     // check if data is loaded
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Item"];
     NSArray *items = [self.managedObjectContext executeFetchRequest:request error:&error];
@@ -33,15 +33,16 @@
         return;
     }
 
+
+    // check if data is loaded
     Item *itemData = [NSEntityDescription
                       insertNewObjectForEntityForName:@"Item" 
                       inManagedObjectContext:self.managedObjectContext];
     
     itemData.itemName = @"Gross Burger";
     itemData.itemCost = [NSNumber numberWithFloat:13.28];
-    
+    itemData.section = [NSNumber numberWithInt:0];
     UIImage *foodImg = [UIImage imageNamed:@"125-food@2x.png"];
-    
     NSData *imageData = UIImagePNGRepresentation(foodImg);
     itemData.itemImg = imageData;
     
@@ -94,6 +95,7 @@
     
     itemData.itemName = @"Spanky Special";
     itemData.itemCost = [NSNumber numberWithFloat:20.99];
+    itemData.section = [NSNumber numberWithInt:0];
     
     foodImg = [UIImage imageNamed:@"125-food@2x.png"];
     
@@ -128,6 +130,40 @@
     ingredientData.item = itemData;
     
     [ingredientsSet addObject:ingredientData];
+    
+    
+    Item *fries = [NSEntityDescription
+                insertNewObjectForEntityForName:@"Item" 
+                inManagedObjectContext:self.managedObjectContext];
+    fries.itemName = @"French Fries";
+    fries.itemCost = [NSNumber numberWithFloat:1.99];
+    fries.section = [NSNumber numberWithInt:1];
+    fries.itemImg = imageData;
+
+    Item *rings = [NSEntityDescription
+                   insertNewObjectForEntityForName:@"Item" 
+                   inManagedObjectContext:self.managedObjectContext];
+    rings.itemName = @"Onion Rings";
+    rings.itemCost = [NSNumber numberWithFloat:1.99];
+    rings.section = [NSNumber numberWithInt:1];
+    rings.itemImg = imageData;
+    
+    Item *diet = [NSEntityDescription
+                   insertNewObjectForEntityForName:@"Item" 
+                   inManagedObjectContext:self.managedObjectContext];
+    diet.itemName = @"Diet Coke";
+    diet.itemCost = [NSNumber numberWithFloat:1.50];
+    diet.section = [NSNumber numberWithInt:2];
+    diet.itemImg = imageData;
+
+    Item *coke = [NSEntityDescription
+                  insertNewObjectForEntityForName:@"Item" 
+                  inManagedObjectContext:self.managedObjectContext];
+    coke.itemName = @"Coke";
+    coke.itemCost = [NSNumber numberWithFloat:1.50];
+    coke.section = [NSNumber numberWithInt:2];
+    coke.itemImg = imageData;
+    
     
     if (![self.managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="878" systemVersion="11C74" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Ingredient" representedClassName="Ingredient" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="ingredients" inverseEntity="Item" syncable="YES"/>
@@ -8,6 +8,7 @@
         <attribute name="itemCost" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <attribute name="itemImg" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="section" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="item" inverseEntity="Ingredient" syncable="YES"/>
     </entity>
     <entity name="Order" representedClassName="Order" syncable="YES">
@@ -17,13 +18,13 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="orderItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OrderItem" inverseName="order" inverseEntity="OrderItem" syncable="YES"/>
     </entity>
-    <entity name="OrderItem" representedClassName="OrderItem" syncable="YES" parentRelationshipName="order">
+    <entity name="OrderItem" representedClassName="OrderItem" syncable="YES">
         <relationship name="item" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Item" syncable="YES"/>
         <relationship name="order" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Order" inverseName="orderItems" inverseEntity="Order" syncable="YES"/>
     </entity>
     <elements>
         <element name="Ingredient" positionX="-54" positionY="-18" width="128" height="75"/>
-        <element name="Item" positionX="160" positionY="-45" width="128" height="105"/>
+        <element name="Item" positionX="160" positionY="-45" width="128" height="120"/>
         <element name="Order" positionX="36" positionY="144" width="128" height="120"/>
         <element name="OrderItem" positionX="250" positionY="192" width="128" height="75"/>
     </elements>
