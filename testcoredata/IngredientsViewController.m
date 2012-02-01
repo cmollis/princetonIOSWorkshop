@@ -54,10 +54,7 @@
     self.title = [NSString stringWithFormat:@"%@ Has...", self.item.itemName];
     
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     self.order = delegate.order;
-    
-    
 }
 
 - (void)viewDidUnload

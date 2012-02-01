@@ -39,7 +39,7 @@
                       insertNewObjectForEntityForName:@"Item" 
                       inManagedObjectContext:self.managedObjectContext];
     
-    itemData.itemName = @"Gross Burger";
+    itemData.itemName = @"Cheese Burger";
     itemData.itemCost = [NSNumber numberWithFloat:13.28];
     itemData.section = [NSNumber numberWithInt:0];
     UIImage *foodImg = [UIImage imageNamed:@"125-food@2x.png"];
@@ -52,10 +52,8 @@
     Ingredient *ingredientData = [NSEntityDescription
                                   insertNewObjectForEntityForName:@"Ingredient" 
                                   inManagedObjectContext:self.managedObjectContext];   
-    
     ingredientData.name = @"Two all beef patties";
     ingredientData.item = itemData;
-    
     [ingredientsSet addObject:ingredientData];
     
     ingredientData = [NSEntityDescription

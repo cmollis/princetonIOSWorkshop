@@ -48,6 +48,10 @@
 		1ACF9FA814CF810600F53B2D /* 117-todo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF9FA614CF810600F53B2D /* 117-todo.png */; };
 		1ACF9FA914CF810600F53B2D /* 117-todo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1ACF9FA714CF810600F53B2D /* 117-todo@2x.png */; };
 		892965FE14D8AC8400694524 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 892965FD14D8AC8400694524 /* Item.m */; };
+		89EC0F5114D8F7ED00B73DEE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EC0F5014D8F7ED00B73DEE /* MapKit.framework */; };
+		89EC0F5514D8F86600B73DEE /* world.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EC0F5314D8F86600B73DEE /* world.png */; };
+		89EC0F5614D8F86600B73DEE /* world@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EC0F5414D8F86600B73DEE /* world@2x.png */; };
+		89EC0F5914D8F8C600B73DEE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EC0F5814D8F8C600B73DEE /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +122,11 @@
 		1ACF9FA714CF810600F53B2D /* 117-todo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "117-todo@2x.png"; sourceTree = "<group>"; };
 		892965FC14D8AC8400694524 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = testcoredata/Item.h; sourceTree = "<group>"; };
 		892965FD14D8AC8400694524 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = testcoredata/Item.m; sourceTree = "<group>"; };
+		89EC0F5014D8F7ED00B73DEE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		89EC0F5314D8F86600B73DEE /* world.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = world.png; sourceTree = "<group>"; };
+		89EC0F5414D8F86600B73DEE /* world@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "world@2x.png"; sourceTree = "<group>"; };
+		89EC0F5714D8F8C600B73DEE /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		89EC0F5814D8F8C600B73DEE /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89EC0F5114D8F7ED00B73DEE /* MapKit.framework in Frameworks */,
 				1A3C095C14C73F7A006F58C6 /* CoreData.framework in Frameworks */,
 				1AC69E7D14C0B0160056D2F7 /* CoreGraphics.framework in Frameworks */,
 				1AC69E7914C0B0160056D2F7 /* UIKit.framework in Frameworks */,
@@ -164,6 +174,7 @@
 		1AC69E6914C0B0160056D2F7 = {
 			isa = PBXGroup;
 			children = (
+				89EC0F5014D8F7ED00B73DEE /* MapKit.framework */,
 				1AA149C714D05EB90087E10E /* coreDataStuff */,
 				1AC69E7E14C0B0160056D2F7 /* testcoredata */,
 				1AC69EAA14C0B0160056D2F7 /* testcoredataTests */,
@@ -219,6 +230,8 @@
 				1A1F157414CF49F500251C38 /* IngredientsViewController.m */,
 				1AC69E8D14C0B0160056D2F7 /* MainStoryboard_iPad.storyboard */,
 				1AC69E8A14C0B0160056D2F7 /* MainStoryboard_iPhone.storyboard */,
+				89EC0F5714D8F8C600B73DEE /* MapViewController.h */,
+				89EC0F5814D8F8C600B73DEE /* MapViewController.m */,
 				1A16894914D1D0F600450153 /* MenuTableViewCell.h */,
 				1A16894A14D1D0F600450153 /* MenuTableViewCell.m */,
 				1A8D30B714CE0E0500C790AE /* MenuViewController.h */,
@@ -230,6 +243,8 @@
 				1AC69E9714C0B0160056D2F7 /* SecondViewController.h */,
 				1AC69E9814C0B0160056D2F7 /* SecondViewController.m */,
 				1AC69E7F14C0B0160056D2F7 /* Supporting Files */,
+				89EC0F5314D8F86600B73DEE /* world.png */,
+				89EC0F5414D8F86600B73DEE /* world@2x.png */,
 			);
 			path = testcoredata;
 			sourceTree = "<group>";
@@ -353,6 +368,8 @@
 				1ACF9FA914CF810600F53B2D /* 117-todo@2x.png in Resources */,
 				1AA149DF14D087320087E10E /* 80-shopping-cart.png in Resources */,
 				1AA149E014D087320087E10E /* 80-shopping-cart@2x.png in Resources */,
+				89EC0F5514D8F86600B73DEE /* world.png in Resources */,
+				89EC0F5614D8F86600B73DEE /* world@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +418,7 @@
 				1A4097CC14D2224500029028 /* AppController.m in Sources */,
 				1A5DEBFA14D32F2C005DE8EC /* OrderViewController.m in Sources */,
 				892965FE14D8AC8400694524 /* Item.m in Sources */,
+				89EC0F5914D8F8C600B73DEE /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
