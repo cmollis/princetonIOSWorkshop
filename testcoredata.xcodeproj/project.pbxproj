@@ -51,6 +51,8 @@
 		89EC0F5514D8F86600B73DEE /* world.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EC0F5314D8F86600B73DEE /* world.png */; };
 		89EC0F5614D8F86600B73DEE /* world@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89EC0F5414D8F86600B73DEE /* world@2x.png */; };
 		89EC0F5914D8F8C600B73DEE /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EC0F5814D8F8C600B73DEE /* MapViewController.m */; };
+		89EC0F5C14D9B87A00B73DEE /* StoreLocations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89EC0F5B14D9B87A00B73DEE /* StoreLocations.plist */; };
+		89EC0F5E14D9F5B900B73DEE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89EC0F5D14D9F5B900B73DEE /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +126,8 @@
 		89EC0F5414D8F86600B73DEE /* world@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "world@2x.png"; sourceTree = "<group>"; };
 		89EC0F5714D8F8C600B73DEE /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		89EC0F5814D8F8C600B73DEE /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		89EC0F5B14D9B87A00B73DEE /* StoreLocations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = StoreLocations.plist; sourceTree = "<group>"; };
+		89EC0F5D14D9F5B900B73DEE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89EC0F5E14D9F5B900B73DEE /* CoreLocation.framework in Frameworks */,
 				89EC0F5114D8F7ED00B73DEE /* MapKit.framework in Frameworks */,
 				1A3C095C14C73F7A006F58C6 /* CoreData.framework in Frameworks */,
 				1AC69E7D14C0B0160056D2F7 /* CoreGraphics.framework in Frameworks */,
@@ -192,6 +197,7 @@
 		1AC69E7714C0B0160056D2F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89EC0F5D14D9F5B900B73DEE /* CoreLocation.framework */,
 				1A3C095B14C73F7A006F58C6 /* CoreData.framework */,
 				1AC69E7C14C0B0160056D2F7 /* CoreGraphics.framework */,
 				1AC69E7A14C0B0160056D2F7 /* Foundation.framework */,
@@ -224,6 +230,7 @@
 				1A5DEBF814D32F2C005DE8EC /* OrderViewController.h */,
 				1A5DEBF914D32F2C005DE8EC /* OrderViewController.m */,
 				1AC69E7F14C0B0160056D2F7 /* Supporting Files */,
+				89EC0F5B14D9B87A00B73DEE /* StoreLocations.plist */,
 			);
 			path = testcoredata;
 			sourceTree = "<group>";
@@ -374,6 +381,7 @@
 				1AA149E014D087320087E10E /* 80-shopping-cart@2x.png in Resources */,
 				89EC0F5514D8F86600B73DEE /* world.png in Resources */,
 				89EC0F5614D8F86600B73DEE /* world@2x.png in Resources */,
+				89EC0F5C14D9B87A00B73DEE /* StoreLocations.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

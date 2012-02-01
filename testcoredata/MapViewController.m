@@ -9,7 +9,7 @@
 #import "MapViewController.h"
 
 @implementation MapViewController
-@synthesize mapView;
+@synthesize mapView = _mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,8 +40,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     
-    [mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"StoreLocations" ofType:@"plist"];
+    NSArray *stores = [[NSDictionary dictionaryWithContentsOfFile:path] valueForKey:@"Array"];
+    NSLog(@"%i", [stores count]);
+    
+    for (NSDictionary *store in stores) {
+        NSLog(@"%@, %@", [store valueForKey:@"latitude"], [store objectForKey:@"longitude"]);
+        // get the coodiantes
+        MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
+        annotation.title = @"Store";
+
+        CLLocationCoordinate2D coord;
+        coord.latitude = [[store valueForKey:@"latitude"] doubleValue];
+        coord.longitude = [[store valueForKey:@"longitude"] doubleValue];
+        
+        annotation.coordinate = coord;
+        
+        NSLog(@".adding Annotation...");
+        [self.mapView addAnnotation:annotation];
+    }
+    
 }
 
 - (void)viewDidUnload
@@ -57,6 +78,54 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+
+#pragma mark MKMapViewDelegate
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation isKindOfClass:[MKUserLocation class]]) {
+        // use the default user annotation view (blue dot)
+        return nil;
+    }
+    
+    static NSString *viewId = @"annotationView";
+    
+    // use a purple pin to denote the Store location on the mapView
+    MKPinAnnotationView *view = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:viewId];
+    if (view == nil) {
+        view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:viewId];
+    }
+    view.pinColor = MKPinAnnotationColorPurple;    
+    view.animatesDrop = YES;
+    view.canShowCallout = YES;
+    return view;
+}
+
+#pragma mark MKMapViewDelegate
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    if ([view isKindOfClass:[MKPinAnnotationView class]]) {
+        // user tapped annotation, use a geocoder to find the address
+        MKPointAnnotation *point = (MKPointAnnotation *)view.annotation;
+        
+        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:point.coordinate.latitude longitude:point.coordinate.longitude];
+        
+        // ask the geoder for the address
+        [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+            
+            // completion handler
+            if (error == nil) {
+                CLPlacemark *placemark = [placemarks objectAtIndex:0];
+                
+                // set the annotation's subtitle to the address
+                point.subtitle = [placemark name];
+            }
+            else {
+                NSLog(@"ERROR occurred ... %@", [error localizedDescription]);
+            }
+        }];
+    }
 }
 
 @end
