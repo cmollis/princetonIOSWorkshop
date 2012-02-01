@@ -31,7 +31,6 @@
 		1AC69E8F14C0B0160056D2F7 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AC69E8D14C0B0160056D2F7 /* MainStoryboard_iPad.storyboard */; };
 		1AC69E9414C0B0160056D2F7 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC69E9314C0B0160056D2F7 /* first.png */; };
 		1AC69E9614C0B0160056D2F7 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC69E9514C0B0160056D2F7 /* first@2x.png */; };
-		1AC69E9914C0B0160056D2F7 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AC69E9814C0B0160056D2F7 /* SecondViewController.m */; };
 		1AC69E9B14C0B0160056D2F7 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC69E9A14C0B0160056D2F7 /* second.png */; };
 		1AC69E9D14C0B0160056D2F7 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1AC69E9C14C0B0160056D2F7 /* second@2x.png */; };
 		1AC69EA514C0B0160056D2F7 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC69EA414C0B0160056D2F7 /* SenTestingKit.framework */; };
@@ -102,8 +101,6 @@
 		1AC69E8E14C0B0160056D2F7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		1AC69E9314C0B0160056D2F7 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
 		1AC69E9514C0B0160056D2F7 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		1AC69E9714C0B0160056D2F7 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		1AC69E9814C0B0160056D2F7 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		1AC69E9A14C0B0160056D2F7 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		1AC69E9C14C0B0160056D2F7 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		1AC69EA314C0B0160056D2F7 /* testcoredataTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testcoredataTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,8 +223,6 @@
 				1A8D30B814CE0E0500C790AE /* MenuViewController.m */,
 				1A5DEBF814D32F2C005DE8EC /* OrderViewController.h */,
 				1A5DEBF914D32F2C005DE8EC /* OrderViewController.m */,
-				1AC69E9714C0B0160056D2F7 /* SecondViewController.h */,
-				1AC69E9814C0B0160056D2F7 /* SecondViewController.m */,
 				1AC69E7F14C0B0160056D2F7 /* Supporting Files */,
 			);
 			path = testcoredata;
@@ -415,7 +410,6 @@
 			files = (
 				1AC69E8514C0B0160056D2F7 /* main.m in Sources */,
 				1AC69E8914C0B0160056D2F7 /* AppDelegate.m in Sources */,
-				1AC69E9914C0B0160056D2F7 /* SecondViewController.m in Sources */,
 				1A3C095F14C74080006F58C6 /* Shopping.xcdatamodeld in Sources */,
 				1A8D30B914CE0E0500C790AE /* MenuViewController.m in Sources */,
 				1A1F157514CF49F500251C38 /* IngredientsViewController.m in Sources */,
