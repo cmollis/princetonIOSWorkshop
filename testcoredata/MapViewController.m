@@ -40,12 +40,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
-    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
     
+    [self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+
     NSString *path = [[NSBundle mainBundle] pathForResource:@"StoreLocations" ofType:@"plist"];
     NSArray *stores = [[NSDictionary dictionaryWithContentsOfFile:path] valueForKey:@"Array"];
     NSLog(@"%i", [stores count]);
+    
+    NSMutableArray *annotations = [NSMutableArray array];
     
     for (NSDictionary *store in stores) {
         NSLog(@"%@, %@", [store valueForKey:@"latitude"], [store objectForKey:@"longitude"]);
@@ -59,10 +61,15 @@
         
         annotation.coordinate = coord;
         
-        NSLog(@".adding Annotation...");
-        [self.mapView addAnnotation:annotation];
+        NSLog(@".adding to array ...");
+        [annotations addObject:annotation];
     }
     
+    if ([annotations count] > 0) {
+        NSLog(@"Adding annotations....");
+        [self.mapView addAnnotations:annotations];
+    }
+
 }
 
 - (void)viewDidUnload
@@ -82,7 +89,7 @@
 
 
 
-#pragma mark MKMapViewDelegate
+#pragma mark - MKMapViewDelegate
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     if ([annotation isKindOfClass:[MKUserLocation class]]) {
         // use the default user annotation view (blue dot)
@@ -102,7 +109,6 @@
     return view;
 }
 
-#pragma mark MKMapViewDelegate
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
     if ([view isKindOfClass:[MKPinAnnotationView class]]) {
         // user tapped annotation, use a geocoder to find the address

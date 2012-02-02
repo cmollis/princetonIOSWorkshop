@@ -101,13 +101,18 @@
     
     return height;
 }
-#pragma mark table view data source
+
+-(void)dealloc {
+    
+    //self.fetchedResultsController.delegate = nil;
+}
+
+#pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[self.fetchedResultsController sections] count] + 1;
 }
 
-#pragma mark table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     int rows = 0;
@@ -199,7 +204,7 @@
 }
 
 
-#pragma mark - Table view delegate
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -259,6 +264,7 @@
     return __fetchedResultsController;
 }  
 
+# pragma mark - NSFetchedResultsControllerDelegate
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
 {
     [self.tableView beginUpdates];
@@ -315,9 +321,5 @@
     [self.tableView reloadData];
 }
 
--(void)dealloc {
-    
-    //self.fetchedResultsController.delegate = nil;
-}
 
 @end

@@ -92,9 +92,25 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Table view data source
+-(void) dealloc {
+    
+    //should set delegates to nil in ARC
+    self.fetchedResultsController.delegate = nil;
+}
 
-// Customize the number of sections in the table view.
+# pragma mark - UIViewController
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSLog(@"prepare for Segue ");
+    
+    IngredientsViewController *upcomingViewController = [segue destinationViewController];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    upcomingViewController.item = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+}
+
+
+#pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[self.fetchedResultsController sections] count];
@@ -163,18 +179,8 @@
 }
 */
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    NSLog(@"prepare for Segue ");
-    
-    IngredientsViewController *upcomingViewController = [segue destinationViewController];
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    upcomingViewController.item = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-}
 
-#pragma mark - Table view delegate
-
+#pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Did select row at index path ");
@@ -188,7 +194,6 @@
 }
 
 #pragma mark - Fetched results controller
-
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (__fetchedResultsController != nil) {
@@ -234,11 +239,6 @@
     return __fetchedResultsController;
 }    
 
--(void) dealloc {
-    
-    //should set delegates to nil in ARC
-    self.fetchedResultsController.delegate = nil;
-}
 
 
 @end

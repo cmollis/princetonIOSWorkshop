@@ -92,13 +92,24 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-#pragma mark - Table view data source
+# pragma mark - UIViewController
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    NSLog(@"current row selected is %d", [[self.tableView indexPathForSelectedRow] row] );
+    
+    self.error = 0;  //for the custom segue conditional check 
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    if (![delegate addItemToOrder:self.item ] == -1) self.error = 1;
+}
 
+# pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
     return 2;  //always two.. one for the ingredients and one for the add to order button
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -132,43 +143,6 @@
     return cell;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-        
-    NSLog(@"current row selected is %d", [[self.tableView indexPathForSelectedRow] row] );
-    
-    self.error = 0;  //for the custom segue conditional check 
-    
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    if (![delegate addItemToOrder:self.item ] == -1) self.error = 1;
-     
-//    NSManagedObjectContext *context = [delegate managedObjectContext];
-//    
-//    NSEntityDescription *desc = [NSEntityDescription entityForName:@"OrderItem" inManagedObjectContext:context];
-//    
-//    //must do this in order to save the relationship!
-//    OrderItem *orderItem = [[OrderItem alloc] initWithEntity:desc insertIntoManagedObjectContext:context];
-//    
-//    orderItem.item = self.item;
-//    orderItem.order = self.order;
-//    
-//    [self.order addOrderItemsObject:orderItem];
-//    
-//    NSError *error = nil;
-//    if (![context save:&error]) {
-//        self.error = 1;
-//        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unexpected Error" message:@"An unexpected error occurred while saving your cart.!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//        [alert show];
-//        
-//    }
-//    else {
-//        NSLog(@".....successful...");
-//
-//        //update the badge here
-//        [delegate updateBadgeValue];
-     
-}
 
 
 /*
@@ -210,8 +184,7 @@
 }
 */
 
-#pragma mark - Table view delegate
-
+#pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
