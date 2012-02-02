@@ -11,6 +11,7 @@
 #import "MenuViewController.h"
 #import "AppDelegate.h"
 #import "OrderItem.h"
+#import "CustomPopSegue.h"
 
 
 @implementation IngredientsViewController
@@ -97,10 +98,11 @@
     
     NSLog(@"current row selected is %d", [[self.tableView indexPathForSelectedRow] row] );
     
-    self.error = 0;  //for the custom segue conditional check 
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    if (![delegate addItemToOrder:self.item ] == -1) self.error = 1;
+    CustomPopSegue *mySegue = (CustomPopSegue*) segue;
+    
+    if (![delegate addItemToOrder:self.item ] == -1) mySegue.errorInSegue = YES;
 }
 
 # pragma mark - UITableViewDataSource

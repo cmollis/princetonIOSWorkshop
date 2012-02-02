@@ -11,12 +11,25 @@
 
 @implementation CustomPopSegue
 
+@synthesize errorInSegue = _errorInSegue;
+
+- (id)initWithIdentifier:(NSString *)identifier source:(UIViewController *)source destination:(UIViewController *)destination {
+    
+    NSLog(@"Initializing Segue ");
+    self = [super initWithIdentifier:identifier source:source destination:destination];
+    if (self) {
+        // Custom initialization
+        
+        self.errorInSegue = NO;
+        
+    }
+    return self;
+}
+
+
 - (void) perform {
-    
-    //bit of a hack, it seems.. although I know which controllers are involved
-    IngredientsViewController *viewController = (IngredientsViewController*) self.sourceViewController;
-    
-    if (viewController.error == 1) return;  //don't do anything.. there is an error
+        
+    if (self.errorInSegue == YES) return;  //don't do anything.. there is an error
     else {
         NSLog(@"Inside Perform !!");
         UIViewController *src = (UIViewController *) self.sourceViewController;

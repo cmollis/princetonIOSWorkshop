@@ -10,4 +10,6 @@
 
 @interface CustomPopSegue : UIStoryboardSegue
 
+@property (nonatomic, assign) bool errorInSegue;
+
 @end
