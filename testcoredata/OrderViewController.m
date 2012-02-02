@@ -51,6 +51,9 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Checkout" style:UIBarButtonItemStyleDone target:self action:@selector(checkout:)];
+    self.navigationItem.rightBarButtonItem = item;
  
     self.numberFormatter = [[NSNumberFormatter alloc] init];
     self.numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
@@ -105,6 +108,14 @@
 -(void)dealloc {
     
     //self.fetchedResultsController.delegate = nil;
+}
+
+#pragma mark - Checkout
+- (void)checkout:(id)sender {
+    NSLog(@"...checkout....");
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Checkout" message:@"Submit Order?" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+    
+    [alert show];
 }
 
 #pragma mark - UITableViewDataSource
