@@ -69,7 +69,15 @@
         NSLog(@"Adding annotations....");
         [self.mapView addAnnotations:annotations];
     }
-
+    
+    
+    //Set Zoom level using Span
+    MKCoordinateRegion theRegion = self.mapView.region;
+    
+    // Zoom out
+    theRegion.span.longitudeDelta *= 1.05;
+    theRegion.span.latitudeDelta *= 1.05;
+    [self.mapView setRegion:theRegion animated:YES];
 }
 
 - (void)viewDidUnload
