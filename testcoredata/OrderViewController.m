@@ -59,6 +59,17 @@
     self.numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
     
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    
+    gestureRecognizer.cancelsTouchesInView = NO;  //don't cancel tablerow selections.. 
+    [self.tableView addGestureRecognizer:gestureRecognizer];
+    
+}
+
+- (void) hideKeyboard {
+    NSLog(@"hideKeyboard");
+    [self.tableView endEditing:YES];
 }
 
 - (void)viewDidUnload
