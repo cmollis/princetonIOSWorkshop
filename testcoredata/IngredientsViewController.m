@@ -102,7 +102,7 @@
     
     CustomPopSegue *mySegue = (CustomPopSegue*) segue;
     
-    if ([delegate addItemToOrder:self.item ] == -1) mySegue.errorInSegue = YES;
+    if (![delegate addItemToOrder:self.item ]) mySegue.errorInSegue = YES;
 }
 
 # pragma mark - UITableViewDataSource
