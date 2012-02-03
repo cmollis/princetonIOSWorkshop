@@ -65,6 +65,8 @@
     gestureRecognizer.cancelsTouchesInView = NO;  //don't cancel tablerow selections.. 
     [self.tableView addGestureRecognizer:gestureRecognizer];
     
+    //
+    
 }
 
 - (void) hideKeyboard {
